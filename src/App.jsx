@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import NavBar from './components/NavBar/NavBar'
+import ChallengeIndex from './components/Challenges/ChallengeIndex'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -15,6 +16,7 @@ function App() {
 
       <Routes>
        {/* all routable components here */}
+       <Route path='/challenges' element={<ChallengeIndex />} />
 
       </Routes>
      </Router>
