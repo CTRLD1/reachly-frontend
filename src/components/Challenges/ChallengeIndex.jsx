@@ -13,8 +13,8 @@ function ChallengeIndex() {
             const response = await axios.get(`${URL}/challenges/`)
             console.log(response.data)
             setChallenges(response.data)
-        } catch (error) {
-            console.error('Error fetching challenges', error)
+        } catch (err) {
+            console.error('Error fetching challenges', err)
         }
 
     }
