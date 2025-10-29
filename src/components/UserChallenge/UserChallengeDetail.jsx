@@ -27,7 +27,16 @@ function UserChallengeDetail() {
             })
             console.log(response.data)
             setMessage('Status updated successfuly!✅')
-            getUserChallenge()
+
+            await getUserChallenge()
+
+            if (newStatus === 'IP')
+                setMessage('Challenge is now in progress, you got this!💪🏽')
+            else if (newStatus === 'C')
+                setMessage('Congrats! you did it!🥳')
+            else if (newStatus == 'P')
+                setMessage('Challenge is reset to pending')
+
         } catch (err) {
             console.error('Error updating the status', err)
             setMessage('Failed to update status😔')
@@ -47,9 +56,43 @@ function UserChallengeDetail() {
                 <p><strong>Date Added:</strong> {userChallenge.date_added}</p>
             </div>
 
+            <p>
+                {
+                    userChallenge.status === 'P'
+                        ?
+                        '🤔'
+                        :
+                        userChallenge.status === 'IP'
+                            ?
+                            '⏱️'
+                            :
+                            userChallenge.status === 'C'
+                                ?
+                                '😎'
+                                :
+                                '❓'
+                }
+            </p>
+
             <div>
-                <button onClick={()=>updateStatus('IP')}>Start</button>
-                <button onClick={()=>updateStatus('C')}>Complete</button>
+                {
+                    userChallenge.status === 'P'
+                        ?
+                        <button onClick={() => updateStatus('IP')}>start challenge</button>
+                        :
+                        userChallenge.status === 'IP'
+                            ?
+                            <button onClick={() => updateStatus('C')}>mark as completed</button>
+                            :
+                            userChallenge.status === 'C'
+                                ?
+                                <button onClick={() => updateStatus('P')}>do it again!</button>
+                                :
+                                null
+
+                }
+
+
             </div>
 
             {message && <p>{message}</p>}
