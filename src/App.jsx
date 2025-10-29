@@ -21,6 +21,7 @@ function App() {
        <Route path='/challenges' element={<ChallengeIndex />} />
        <Route path='/challenges/:challengeId' element={<ChallengeDetail />} />
        <Route path='/userchallenges' element={<UserChallengeIndex />} />
+       {/* <Route path='/userchallenges:Id' element={<UserChallengeIndex />} /> */}
 
       </Routes>
      </Router>

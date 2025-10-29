@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import axios from 'axios'
 
 const URL = import.meta.env.VITE_API_URL
@@ -32,10 +33,13 @@ function UserChallengeIndex() {
                     userChallenges.map((userChallenge) => {
                         return (
                             <>
-                                <p><strong>Challenge:</strong> {userChallenge.challenge}</p>
-                                <p><strong>Status:</strong> {userChallenge.status_display}</p>
-                                <p><strong>Date Added:</strong> {userChallenge.date_added}</p>
+                            <Link to={`/userchallenges/${userChallenge.id}`}>
+                            <p><strong>Challenge:</strong> {userChallenge.challenge}</p>
+                            </Link>
+                                
+                                
                             </>
+
                         )
                     })
                     :

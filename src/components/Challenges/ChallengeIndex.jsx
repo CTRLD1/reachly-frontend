@@ -33,8 +33,6 @@ function ChallengeIndex() {
                 return (
                     <Link to={`/challenges/${challenge.id}`}>
                         <p>{challenge.title}</p>
-
-
                     </Link>
                 )
             })
