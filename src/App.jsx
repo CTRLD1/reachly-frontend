@@ -9,6 +9,7 @@ import UserChallengeIndex from './components/UserChallenge/UserChallengeIndex'
 import UserChallengeDetail from './components/UserChallenge/UserChallengeDetail'
 import ReflectionIndex from './components/Reflections/ReflectionIndex'
 import ReflectionDetail from './components/Reflections/ReflectionDetail'
+import ReflectionForm from './components/Reflections/ReflectionForm'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -27,8 +28,8 @@ function App() {
        <Route path='/userchallenges/:userChallengeId' element={<UserChallengeDetail />} />
        <Route path='/reflections' element={<ReflectionIndex />} />
        <Route path='/reflections/:reflectionId' element={<ReflectionDetail />} />
-       {/* <Route path='/reflections/:reflectionId/edit' element={<ReflectionForm />} />
-       <Route path='/reflections/new' element={<ReflectionForm />} /> */}
+       <Route path='/reflections/:reflectionId/edit' element={<ReflectionForm />} />
+       <Route path='/reflections/new' element={<ReflectionForm />} />
 
 
       </Routes>
