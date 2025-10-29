@@ -6,6 +6,7 @@ import NavBar from './components/NavBar/NavBar'
 import ChallengeIndex from './components/Challenges/ChallengeIndex'
 import ChallengeDetail from './components/Challenges/ChallengeDetail'
 import UserChallengeIndex from './components/UserChallenge/UserChallengeIndex'
+import UserChallengeDetail from './components/UserChallenge/UserChallengeDetail'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -21,7 +22,7 @@ function App() {
        <Route path='/challenges' element={<ChallengeIndex />} />
        <Route path='/challenges/:challengeId' element={<ChallengeDetail />} />
        <Route path='/userchallenges' element={<UserChallengeIndex />} />
-       {/* <Route path='/userchallenges:Id' element={<UserChallengeIndex />} /> */}
+       <Route path='/userchallenges/:userChallengeId' element={<UserChallengeDetail />} />
 
       </Routes>
      </Router>
