@@ -11,6 +11,7 @@ function ReflectionForm() {
     const { reflectionId } = useParams()
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
+        user:1,
         text: '',
         mood: 'N',
         user_challenge: ''
@@ -38,7 +39,7 @@ function ReflectionForm() {
         if (reflectionId) {
             getSingleReflection()
         }
-          getUserChallenges()
+        getUserChallenges()
     }, [])
 
 
@@ -90,12 +91,11 @@ function ReflectionForm() {
                     <label htmlFor='user_challenge'>Select a Challenge</label>
                     <select id='user_challenge' name='user_challenge' value={formData.user_challenge} onChange={handleChange} required>
                         <option value=''>choose a challenge</option>
-                        {userChallenges
-                            .map(userchallenge => (
-                                <option key={userchallenge.id} value={userchallenge.id}>
-                                    {userchallenge.challenge}
-                                </option>
-                            ))
+                        {userChallenges.map(userchallenge => (
+                            <option key={userchallenge.id} value={userchallenge.id}>
+                                {userchallenge.challenge}
+                            </option>
+                        ))
 
                         }
                     </select>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import axios from 'axios'
 import { Link } from 'react-router'
 
@@ -11,7 +11,8 @@ function ReflectionDetail() {
 
   const { reflectionId } = useParams()
   const [reflection, setReflection] = useState({})
-  const [error, setError] = useState(null)
+  const [errors, setErrors] = useState(null)
+  const navigate = useNavigate()
 
 
   const moodLabels = {
@@ -27,7 +28,25 @@ function ReflectionDetail() {
       setReflection(response.data)
     } catch (err) {
       console.error(err)
-      setError('Failed to fetch reflection details')
+      setErrors('Failed to fetch reflection details')
+    }
+
+  }
+
+  // delete function ref: my django-rest-framework Lab (pokemon-collector) bonus excercise 
+  // confirm delete ref: https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
+
+
+
+  async function handleDelete() {
+    try {
+      const response = await axios.delete(`${URL}/reflections/${reflectionId}/`)
+      console.log(response)
+      console.log(`${reflection.text} has been deleted successfuly`)
+      navigate('/reflections')
+    } catch (err) {
+      console.log(err)
+      setErrors(err.response.data.err)
     }
 
   }
@@ -36,14 +55,14 @@ function ReflectionDetail() {
     getSingleReflection()
   }, [])
 
-  if (error) {
-    return <h3>{error}</h3>
+  if (errors) {
+    return <h3>{errors}</h3>
   }
 
   return (
     <div>
       <h2>Reflection Details💭</h2>
-      <p><strong>Challenge: </strong>{reflection.challenge_title}</p>
+      <p><strong>Challenge: </strong>{reflection.user_challenge_title}</p>
       <p><strong>Mood: </strong>{moodLabels[reflection.mood]}</p>
       <p><strong>Text: </strong>{reflection.text}</p>
       <p><strong>Created at: </strong>
@@ -58,6 +77,8 @@ function ReflectionDetail() {
       }
 
       <Link to={`/reflections/${reflection.id}/edit`}>Edit Reflection</Link>
+
+      <button onClick={handleDelete}>Delete Reflection</button>
 
     </div>
   )
