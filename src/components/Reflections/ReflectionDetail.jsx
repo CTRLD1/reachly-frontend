@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import axios from 'axios'
 import { Link } from 'react-router'
+import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
+
 
 // ref: cat-collector classwork code
 
 const URL = import.meta.env.VITE_API_URL
 
-function ReflectionDetail() {
+function ReflectionDetail({user}) {
 
   const { reflectionId } = useParams()
   const [reflection, setReflection] = useState({})
@@ -23,7 +25,7 @@ function ReflectionDetail() {
 
   async function getSingleReflection() {
     try {
-      const response = await axios.get(`${URL}/reflections/${reflectionId}/`)
+      const response = await authRequest({ method: 'get', url: `${URL}/reflections/${reflectionId}/` })
       console.log(response.data)
       setReflection(response.data)
     } catch (err) {
@@ -40,7 +42,7 @@ function ReflectionDetail() {
 
   async function handleDelete() {
     try {
-      const response = await axios.delete(`${URL}/reflections/${reflectionId}/`)
+      const response = await authRequest({ method: 'delete', url: `${URL}/reflections/${reflectionId}/` })
       console.log(response)
       console.log(`${reflection.text} has been deleted successfuly`)
       navigate('/reflections')
@@ -62,6 +64,13 @@ function ReflectionDetail() {
   return (
     <div>
       <h2>Reflection Details💭</h2>
+      {
+        user
+          ?
+          <p>{user}</p>
+          :
+          null
+      }
       <p><strong>Challenge: </strong>{reflection.user_challenge_title}</p>
       <p><strong>Mood: </strong>{moodLabels[reflection.mood]}</p>
       <p><strong>Text: </strong>{reflection.text}</p>

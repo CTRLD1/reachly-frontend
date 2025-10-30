@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router'
+import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
 
 const URL = import.meta.env.VITE_API_URL
 
-function ReflectionIndex() {
+function ReflectionIndex({user}) {
 
     const [reflections, setReflections] = useState([])
     const [error, setError] = useState(null)
 
     async function getReflection() {
         try {
-            const response = await axios.get(`${URL}/reflections/`)
+            const response = await authRequest({ method: 'get', url: `${URL}/reflections/` })
             console.log(response.data)
             setReflections(response.data)
         } catch (err) {
@@ -24,11 +25,19 @@ function ReflectionIndex() {
     useEffect(() => {
         getReflection()
     }, [])
+    console.log(user)
 
 
     return (
         <div>
             <h2>My Reflections💭</h2>
+            {
+                user
+                    ?
+                    <p>{user}</p>
+                    :
+                    null
+            }
             {
                 reflections.length
                     ?
@@ -39,10 +48,9 @@ function ReflectionIndex() {
                                     to={`/reflections/${reflection.id}`}>
                                     <p>
                                         <strong>Challenge: </strong>
-                                        {reflection.challenge_title}
+                                        {reflection.user_challenge_title}
                                     </p>
                                 </Link>
-                                <p><strong>Mood:</strong> {reflection.mood_display}</p>
                                 <p><strong>Created at: </strong>
                                     {new Date(reflection.created_at).toLocaleString()}
                                 </p>

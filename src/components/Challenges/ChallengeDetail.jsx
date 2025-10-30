@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router'
+import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -12,7 +13,7 @@ function ChallengeDetail() {
 
   async function getSingleChallenge() {
     try {
-      const response = await axios.get(`${URL}/challenges/${challengeId}/`)
+      const response = await authRequest({ method: 'get', url: `${URL}/challenges/${challengeId}/` })
       console.log(response.data)
       setChallenge(response.data)
     } catch (err) {
@@ -23,10 +24,12 @@ function ChallengeDetail() {
 
   async function startChallenge() {
     try {
-      const response = await axios.post(`${URL}/userchallenges/`, {
-        user : 1,
-        challenge: challengeId,
-        status: 'P'
+      const response = await authRequest({
+        method: 'post', url: `${URL}/userchallenges/`,
+        data: {
+          challenge: challengeId,
+          status: 'P'
+        }
       })
       console.log(response.data)
       setMessage('Challenge added successfully! 🥳')
@@ -38,13 +41,13 @@ function ChallengeDetail() {
   }
 
   useEffect(() => {
-      getSingleChallenge()
-    }, [])
+    getSingleChallenge()
+  }, [])
 
 
   return (
     <div>
-      <h1>{ challenge.title }</h1>
+      <h1>{challenge.title}</h1>
       <p>{challenge.description}</p>
 
       <button onClick={startChallenge}>Start Challenge</button>

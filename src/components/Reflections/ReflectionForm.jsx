@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import axios from 'axios'
+import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
 
 // ref: cat-collector classwork code
 
@@ -11,7 +12,6 @@ function ReflectionForm() {
     const { reflectionId } = useParams()
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        user:1,
         text: '',
         mood: 'N',
         user_challenge: ''
@@ -20,14 +20,14 @@ function ReflectionForm() {
     const [userChallenges, setUserChallenges] = useState([])
 
     async function getSingleReflection() {
-        const response = await axios.get(`${URL}/reflections/${reflectionId}/`)
+        const response = await authRequest({method:'get', url:`${URL}/reflections/${reflectionId}/`})
         console.log(response.data)
         setFormData(response.data)
     }
 
     async function getUserChallenges() {
         try {
-            const response = await axios.get(`${URL}/userchallenges/`)
+            const response = await authRequest({method:'get', url:`${URL}/userchallenges/`})
             setUserChallenges(response.data)
         } catch (err) {
             console.error('Error fetching challenges')
@@ -52,9 +52,9 @@ function ReflectionForm() {
         let response = {}
         try {
             if (reflectionId) {
-                response = await axios.patch(`${URL}/reflections/${reflectionId}/`, formData)
+                response = await authRequest({method:'patch', url:`${URL}/reflections/${reflectionId}/`, data:formData})
             } else {
-                response = await axios.post(`${URL}/reflections/`, formData)
+                response = await authRequest({method:'post', url:`${URL}/reflections/`, data:formData})
             }
             console.log(response)
             if (response.status === 201 || response.status === 200) {

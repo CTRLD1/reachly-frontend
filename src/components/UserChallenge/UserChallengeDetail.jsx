@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
+import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -12,7 +13,7 @@ function UserChallengeDetail() {
 
     async function getUserChallenge() {
         try {
-            const response = await axios.get(`${URL}/userchallenges/${userChallengeId}/`)
+            const response = await authRequest({ method: 'get', url: `${URL}/userchallenges/${userChallengeId}/` })
             console.log(response.data)
             setUserChallenge(response.data)
         } catch (err) {
@@ -22,8 +23,8 @@ function UserChallengeDetail() {
 
     async function updateStatus(newStatus) {
         try {
-            const response = await axios.patch(`${URL}/userchallenges/${userChallengeId}/`, {
-                status: newStatus
+            const response = await authRequest({method:'patch', url:`${URL}/userchallenges/${userChallengeId}/`, 
+                data: {status: newStatus}
             })
             console.log(response.data)
             setMessage('Status updated successfuly!✅')
@@ -51,12 +52,14 @@ function UserChallengeDetail() {
         <>
             <div>
                 <h2>Challenge Details</h2>
-                <p><strong>Challenge:</strong> {userChallenge.challenge}</p>
+                <p><strong>Challenge:</strong> {userChallenge.challenge_title}</p>
                 <p><strong>Status:</strong> {userChallenge.status_display}</p>
                 <p><strong>Date Added:</strong> {userChallenge.date_added}</p>
             </div>
+            
 
             <p>
+                
                 {
                     userChallenge.status === 'P'
                         ?
