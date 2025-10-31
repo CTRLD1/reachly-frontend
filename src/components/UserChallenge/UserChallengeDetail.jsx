@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
 import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
+import ReactConfetti from 'react-confetti'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -10,6 +11,8 @@ function UserChallengeDetail() {
     const { userChallengeId } = useParams()
     const [userChallenge, setUserChallenge] = useState({})
     const [message, setMessage] = useState('')
+    // ref for react confetti effect: https://github.com/alampros/react-confetti
+    const [showConfetti, setShowConfetti] = useState(false)
 
     async function getUserChallenge() {
         try {
@@ -23,20 +26,25 @@ function UserChallengeDetail() {
 
     async function updateStatus(newStatus) {
         try {
-            const response = await authRequest({method:'patch', url:`${URL}/userchallenges/${userChallengeId}/`, 
-                data: {status: newStatus}
+            const response = await authRequest({
+                method: 'patch', url: `${URL}/userchallenges/${userChallengeId}/`,
+                data: { status: newStatus }
             })
             console.log(response.data)
             setMessage('Status updated successfuly!✅')
 
             await getUserChallenge()
 
-            if (newStatus === 'IP')
+            if (newStatus === 'IP') {
                 setMessage('Challenge is now in progress, you got this!💪🏽')
-            else if (newStatus === 'C')
+            } else if (newStatus === 'C') {
                 setMessage('Congrats! you did it!🥳')
-            else if (newStatus == 'P')
+                setShowConfetti(true)
+                setTimeout(() => setShowConfetti(false), 5000)
+
+            } else if (newStatus == 'P')
                 setMessage('Challenge is reset to pending')
+
 
         } catch (err) {
             console.error('Error updating the status', err)
@@ -50,16 +58,17 @@ function UserChallengeDetail() {
 
     return (
         <>
+            {showConfetti && <ReactConfetti numberOfPieces={400} gravity={0.2} recycle={false} width={window.innerWidth} height={window.innerHeight}/>}
             <div>
                 <h2>Challenge Details</h2>
                 <p><strong>Challenge:</strong> {userChallenge.challenge_title}</p>
                 <p><strong>Status:</strong> {userChallenge.status_display}</p>
                 <p><strong>Date Added:</strong> {userChallenge.date_added}</p>
             </div>
-            
+
 
             <p>
-                
+
                 {
                     userChallenge.status === 'P'
                         ?
