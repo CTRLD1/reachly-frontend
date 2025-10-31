@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import axios from 'axios'
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import NavBar from './components/NavBar/NavBar'
 import ChallengeIndex from './components/Challenges/ChallengeIndex'
@@ -13,6 +11,7 @@ import ReflectionForm from './components/Reflections/ReflectionForm'
 
 import Login from './components/Auth/Login'
 import { getUserFromToken } from './lib/auth'
+import SignUp from './components/Auth/Signup'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -38,8 +37,7 @@ function App() {
           <Route path='/reflections/new' element={<ReflectionForm />} />
 
           <Route path='/login' element={<Login setUser={setUser} />} />
-
-
+          <Route path='/signup' element={<SignUp />} />
         </Routes>
       </Router>
     </div>
