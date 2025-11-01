@@ -12,6 +12,7 @@ import ReflectionForm from './components/Reflections/ReflectionForm'
 import Login from './components/Auth/Login'
 import { getUserFromToken } from './lib/auth'
 import SignUp from './components/Auth/Signup'
+import HomePage from './components/HomePage/HomePage'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -27,6 +28,7 @@ function App() {
 
         <Routes>
           {/* all routable components here */}
+          <Route path='/' element={<HomePage />} />
           <Route path='/challenges' element={<ChallengeIndex />} />
           <Route path='/challenges/:challengeId' element={<ChallengeDetail />} />
           <Route path='/userchallenges' element={<UserChallengeIndex />} />
