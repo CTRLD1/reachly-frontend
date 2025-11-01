@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import NavBar from './components/NavBar/NavBar'
 import ChallengeIndex from './components/Challenges/ChallengeIndex'
@@ -12,7 +12,9 @@ import ReflectionForm from './components/Reflections/ReflectionForm'
 import Login from './components/Auth/Login'
 import { getUserFromToken } from './lib/auth'
 import SignUp from './components/Auth/Signup'
+import ProtectedRoute from './components/Auth/ProtectedRoute'
 import HomePage from './components/HomePage/HomePage'
+import ProfilePage from './components/Profile/ProfilePage'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -40,6 +42,13 @@ function App() {
 
           <Route path='/login' element={<Login setUser={setUser} />} />
           <Route path='/signup' element={<SignUp />} />
+
+          <Route path='/profile'
+            element={
+              < ProtectedRoute>
+                <ProfilePage user={user} />
+              </ProtectedRoute>
+            } />
         </Routes>
       </Router>
     </div>

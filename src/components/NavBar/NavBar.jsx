@@ -5,15 +5,17 @@ import LogOutButton from '../Auth/LogOutButton'
 function NavBar({ user, setUser }) {
   return (
     <nav>
+      <Link to={'/'}>Home</Link>
       {
         user
           ?
           (
             <>
-              <LogOutButton setUser={setUser} />
               <Link to={'/challenges'}>Challenges</Link>
               <Link to={'/userchallenges'}>My Challenges</Link>
               <Link to={'/reflections'}>Reflections</Link>
+              <Link to={'/profile'}>Profile</Link>
+              <LogOutButton setUser={setUser} />
             </>
           )
           :
@@ -25,7 +27,7 @@ function NavBar({ user, setUser }) {
             </>
           )
       }
-      <Link to={'/'}>Home</Link>
+
 
     </nav>
   )
