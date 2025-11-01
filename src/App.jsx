@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import NavBar from './components/NavBar/NavBar'
 import ChallengeIndex from './components/Challenges/ChallengeIndex'
@@ -16,7 +16,6 @@ import ProtectedRoute from './components/Auth/ProtectedRoute'
 import HomePage from './components/HomePage/HomePage'
 import ProfilePage from './components/Profile/ProfilePage'
 
-const URL = import.meta.env.VITE_API_URL
 
 function App() {
 
@@ -25,23 +24,57 @@ function App() {
   return (
     <div>
       <Router>
-        {/* render nav bar here */}
         <NavBar user={user} setUser={setUser} />
 
         <Routes>
-          {/* all routable components here */}
           <Route path='/' element={<HomePage />} />
           <Route path='/challenges' element={<ChallengeIndex />} />
           <Route path='/challenges/:challengeId' element={<ChallengeDetail />} />
-          <Route path='/userchallenges' element={<UserChallengeIndex />} />
-          <Route path='/userchallenges/:userChallengeId' element={<UserChallengeDetail />} />
-          <Route path='/reflections' element={<ReflectionIndex />} />
-          <Route path='/reflections/:reflectionId' element={<ReflectionDetail />} />
-          <Route path='/reflections/:reflectionId/edit' element={<ReflectionForm />} />
-          <Route path='/reflections/new' element={<ReflectionForm />} />
-
           <Route path='/login' element={<Login setUser={setUser} />} />
           <Route path='/signup' element={<SignUp />} />
+
+          {/* the protected routes: */}
+          <Route path='/userchallenges'
+            element={
+              <ProtectedRoute>
+                <UserChallengeIndex />
+              </ProtectedRoute>
+            } />
+
+          <Route path='/userchallenges/:userChallengeId'
+            element={
+              <ProtectedRoute>
+                <UserChallengeDetail />
+              </ProtectedRoute>
+            } />
+
+          <Route path='/reflections'
+            element={
+              <ProtectedRoute>
+                <ReflectionIndex />
+              </ProtectedRoute>
+            } />
+
+          <Route path='/reflections/:reflectionId'
+            element={
+              <ProtectedRoute>
+                <ReflectionDetail />
+              </ProtectedRoute>
+            } />
+
+          <Route path='/reflections/:reflectionId/edit'
+            element={
+              <ProtectedRoute>
+                <ReflectionForm />
+              </ProtectedRoute>
+            } />
+
+          <Route path='/reflections/new'
+            element={
+              <ProtectedRoute>
+                <ReflectionForm />
+              </ProtectedRoute>
+            } />
 
           <Route path='/profile'
             element={
