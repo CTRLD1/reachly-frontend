@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { authRequest } from '../../lib/auth'
+import { ChartPieDonutText } from './UserProgressChart'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -32,6 +33,8 @@ function ProfilePage() {
             <p><strong>Full Name: </strong>{profile.first_name} {profile.last_name}</p>
             <p><strong>Email: </strong>{profile.email}</p>
             <p><strong>Username: </strong>{profile.username}</p>
+
+            <ChartPieDonutText />
 
         </div>
     )
