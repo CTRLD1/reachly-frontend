@@ -16,7 +16,7 @@ import ProtectedRoute from './components/Auth/ProtectedRoute'
 import HomePage from './components/HomePage/HomePage'
 import ProfilePage from './components/Profile/ProfilePage'
 
-import { Button } from "@/components/ui/button"
+
 
 
 function App() {
@@ -87,10 +87,10 @@ function App() {
         </Routes>
       </Router>
 
-      <div className="flex min-h-svh flex-col items-center justify-center">
+      {/* <div className="flex min-h-svh flex-col items-center justify-center">
       <Button>Click me</Button>
 
-    </div>
+    </div> */}
     </div>
 
     

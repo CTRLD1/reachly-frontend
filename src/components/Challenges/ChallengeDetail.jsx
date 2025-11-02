@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router'
 import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
+import { Button } from '../ui/button'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -50,7 +51,7 @@ function ChallengeDetail() {
       <h1>{challenge.title}</h1>
       <p>{challenge.description}</p>
 
-      <button onClick={startChallenge}>Start Challenge</button>
+      <button className='bg-blue-500 text-white font-semibold px-4 py-2 rounded hover:bg-blue-600 transitio' onClick={startChallenge}>Start Challenge</button>
       {message && <p>{message}</p>}
     </div>
   )
