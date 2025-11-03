@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router'
+import HoverCard from '../ui/HoverCard'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -24,22 +25,26 @@ function ChallengeIndex() {
     }, [])
 
     return (
-        <div>
-         <h2>All Challenges</h2>
-         {
-            challenges.length
-            ?
-            challenges.map((challenge)=>{
-                return (
-                    <Link to={`/challenges/${challenge.id}`}>
-                        <p>{challenge.title}</p>
-                    </Link>
-                )
-            })
-            :
-            <h2>No challenges yet</h2>
-         }
-    
+        <div className='p-8 bg-bg min-h-screen text-text'>
+            <h2 className='text-2xl font-bold mb-8'>All Challenges</h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                {
+                    challenges.length
+                        ?
+                        challenges.map((challenge) => {
+                            return (
+                                <Link to={`/challenges/${challenge.id}`}>
+                                    <HoverCard 
+                                    title = {challenge.title}
+                                    />
+                                    
+                                </Link>
+                            )
+                        })
+                        :
+                        <h2>No challenges yet</h2>
+                }
+            </div>
         </div>
     )
 }
