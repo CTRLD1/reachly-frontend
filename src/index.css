@@ -42,15 +42,15 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   /* Reachly theme */
-  --color-bg: #0B1015;
-  --color-panel: #11161C;
-  --color-primary: #2496ED;
-  --color-hover: #1B82D1;
-  --color-navbar: #0D63A5;
-  --color-accent: #3DDC97;
-  --color-text: #C9D1D9;
-  --color-muted: #8B949E;
-  --color-border: #1F2933;
+  --bg: #0B1015;
+  --panel: #11161C;
+  --primary: #2496ED;
+  --hover: #1B82D1;
+  --navbar: #0D63A5;
+  --accent: #3DDC97;
+  --text: #C9D1D9;
+  --muted: #8B949E;
+  --border: #1F2933;
   --radius: 0.625rem;
 }
 
@@ -89,7 +89,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Reachly theme */
-  /* ---bg: #0B1015;
+  --bg: #0B1015;
   --panel: #11161C;
   --primary: #2496ED;
   --hover: #1B82D1;
@@ -98,7 +98,7 @@
   --text: #C9D1D9;
   --muted: #8B949E;
   --border: #1F2933;
-  --radius: 0.625rem; */
+  --radius: 0.625rem;
 }
 
 .dark {
@@ -136,23 +136,29 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
   }
 
-  /* body {
-    @apply bg-background text-foreground;
-  }
-
-  h1, h2, h3, h4 {
-    @apply font-semibold text-accent;
+  nav {
+    background-color: var(--navbar);
+    color: var(--text);
+    @apply shadow-md w-full flex justify-center items-center gap-8 py-4;
   }
 
   a {
-    @apply hover:text-accent transition-colors;
+    color: var(--text);
+    transition: color 0.2s ease-in-out;
   }
 
-  button {
-    @apply transition-all duration-300;
-  } */
+  a:hover {
+    color: var(--accent);
+  }
+
+  h1, h2, h3, h4, h5 {
+    color: var(--text);
+    font-weight: 600;
+  }
 }

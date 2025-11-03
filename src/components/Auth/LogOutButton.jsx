@@ -12,7 +12,7 @@ function LogOutButton({setUser}) {
     }
   return (
     <div>
-      <button onClick={handleLogOut}>Log Out</button>
+      <button onClick={handleLogOut} className="logout text-text hover:text-[#E74C3C] transition-colors duration-200">Log Out</button>
     </div>
   )
 }
