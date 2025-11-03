@@ -17,8 +17,6 @@ import HomePage from './components/HomePage/HomePage'
 import ProfilePage from './components/Profile/ProfilePage'
 
 
-
-
 function App() {
 
   const [user, setUser] = useState(getUserFromToken())
