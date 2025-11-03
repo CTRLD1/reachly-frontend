@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router';
 // src: https://play.tailwindcss.com/eCfibrSI2X 
-function HoverCard({ title, status, date }) {
+function HoverCard({ title, id }) {
     return (
         <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 rounded-xl shadow-md ring-1 ring-gray-200 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
 
@@ -19,14 +20,14 @@ function HoverCard({ title, status, date }) {
 
                 <p className="text-gray-500 mb-1 transition-all duration-300 group-hover:text-white/90"></p>
 
-                <p className="text-gray-500 mb-4 transition-all duration-300 group-hover:text-white/80"></p>
+                <p className="text-gray-500 mb-4 transition-all duration-300 group-hover:text-white/80"> </p>
 
-                <a
-                    className="text-sky-500 font-semibold transition-all duration-300 group-hover:text-white"
-                    href="#"
+                <Link
+                    to={`/challenges/${id}`}
+                    className="text-sky-500 hover:text-sky-700 font-semibold transition"
                 >
                     View Details →
-                </a>
+                </Link>
             </div>
         </div>
     );

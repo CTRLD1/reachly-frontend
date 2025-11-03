@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
 import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
+import UserChallengeCard from '../ui/UserChallengeCard'
 
 
 const URL = import.meta.env.VITE_API_URL
@@ -28,8 +29,8 @@ function UserChallengeIndex({ user }) {
     console.log(user)
 
     return (
-        <div>
-            <h2>My Challenges:</h2>
+        <div className='p-6' >
+            <h2 className='text-xl font-bold mb-6'>My Challenges:</h2>
             {
                 user
                     ?
@@ -38,26 +39,21 @@ function UserChallengeIndex({ user }) {
                     null
             }
             {
-                userChallenges.length
-                    ?
-                    userChallenges.map((userChallenge) => {
-                        return (
-                            <>
-                                <Link to={`/userchallenges/${userChallenge.id}`}>
-                                    <p><strong>Challenge:</strong> {userChallenge.challenge_title}</p>
-                                </Link>
-
-
-                            </>
-
-                        )
-                    })
-                    :
+                userChallenges.length ? (
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+                        {userChallenges.map((userChallenge) => (
+                            <UserChallengeCard
+                                id={userChallenge.id}
+                                title={userChallenge.challenge_title}
+                            />
+                        ))}
+                    </div>
+                ) : (
                     <p>No challenges yet</p>
-
-
-
+                )
             }
+
+
         </div>
     )
 }
