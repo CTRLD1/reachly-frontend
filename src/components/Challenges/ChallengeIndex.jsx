@@ -26,7 +26,7 @@ function ChallengeIndex() {
 
     return (
         <div className='p-8 bg-bg min-h-screen text-text'>
-            <h2 className='text-2xl font-bold mb-8'>All Challenges</h2>
+            <h2 className='text-3xl text-center mb-4 mt-3'>All Challenges</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                 {
                     challenges.length

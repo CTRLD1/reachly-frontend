@@ -30,7 +30,7 @@ function UserChallengeIndex({ user }) {
 
     return (
         <div className='p-6' >
-            <h2 className='text-xl font-bold mb-6'>My Challenges:</h2>
+            <h2 className='text-3xl text-center mb-4 mt-4'>My Challenges</h2>
             {
                 user
                     ?

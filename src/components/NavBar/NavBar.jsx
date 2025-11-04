@@ -4,7 +4,7 @@ import LogOutButton from '../Auth/LogOutButton'
 
 function NavBar({ user, setUser }) {
   return (
-    <nav>
+    <nav className='sticky top-0 z-50'>
       <Link to={'/'}>Home</Link>
       {
         user

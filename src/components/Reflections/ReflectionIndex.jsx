@@ -30,7 +30,7 @@ function ReflectionIndex({ user }) {
 
     return (
         <div>
-            <h2>My Reflections💭</h2>
+            <h2 className='text-3xl text-center mb-4 mt-9'>My Reflections💭</h2>
             {
                 user
                     ?
@@ -41,33 +41,41 @@ function ReflectionIndex({ user }) {
             {
                 reflections.length
                     ?
-                    <div className='flex flex-wrap justify-center gap-6 p-8 bg-gray-900' >
-                        {
-                            reflections.map((reflection) => {
-                                return (
-                                    <Link
-                                        key={reflection.id}
-                                        to={`/reflections/${reflection.id}`}
-                                        className="no-underline"
-                                    >
-                                        <ReflectionIndexCard
-                                            title={reflection.user_challenge_title}
-                                            body={`Created at: ${new Date(reflection.created_at).toLocaleString()}`}
-                                        />
-                                    </Link>
-                                )
-                            })}
-                    </div>
+                    <>
+                        <div className='flex flex-wrap justify-center gap-6 p-8 mb-10' >
+                            {
+                                reflections.map((reflection) => {
+                                    return (
+                                        <Link
+                                            key={reflection.id}
+                                            to={`/reflections/${reflection.id}`}
+                                            className="no-underline"
+                                        >
+                                            <ReflectionIndexCard
+                                                title={reflection.user_challenge_title}
+                                                body={`Created at: ${new Date(reflection.created_at).toLocaleString()}`}
+                                            />
+                                        </Link>
+                                    )
+                                })}
 
+                        </div>
+                        <div className='flex justify-center'>
+                            <Link to='/reflections/new' className='inline-block bg-[#11161C] text-white px-4 py-2 rounded-lg mt-3 hover:bg-[#0D63A5] transition'>
+                                ➕ Add Reflection
+                            </Link>
+                        </div>
 
-
+                    </>
                     :
                     <p>No reflections yet💤</p>
 
             }
             {error && { error }}
         </div >
+
     )
+
 }
 
 export default ReflectionIndex

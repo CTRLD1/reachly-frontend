@@ -93,7 +93,7 @@ function ReflectionForm() {
                         <option value=''>choose a challenge</option>
                         {userChallenges.map(userchallenge => (
                             <option key={userchallenge.id} value={userchallenge.id}>
-                                {userchallenge.challenge}
+                                {userchallenge.challenge_title}
                             </option>
                         ))
 
