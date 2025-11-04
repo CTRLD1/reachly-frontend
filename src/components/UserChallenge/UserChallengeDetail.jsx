@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { authRequest} from "../../lib/auth"
+import { authRequest } from "../../lib/auth"
 import ReactConfetti from 'react-confetti'
 import UserChallengeDetailCard from '../ui/UserChallengeDetailCard'
 
@@ -61,7 +61,6 @@ function UserChallengeDetail() {
         <>
             {showConfetti && <ReactConfetti numberOfPieces={400} gravity={0.2} recycle={false} width={window.innerWidth} height={window.innerHeight} />}
 
-            {/* <h2>Challenge Details</h2> */}
             <UserChallengeDetailCard
                 date={userChallenge.date_added}
                 title={userChallenge.challenge_title}
