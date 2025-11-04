@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 // src: https://tailwindflex.com/@prajwal/feature-card#google_vignette
 
-function UserChallengeCard({ emoji = "📋", title, id}) {
+function UserChallengeCard({ emoji = "🏆", title, id}) {
     return (
         <div className='relative cursor-pointer w-full max-w-sm'>
             <span className='absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-blue-200 rounded-lg'></span>

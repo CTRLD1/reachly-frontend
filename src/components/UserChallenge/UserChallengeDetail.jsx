@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import axios from 'axios'
-import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
+import { authRequest} from "../../lib/auth"
 import ReactConfetti from 'react-confetti'
+import UserChallengeDetailCard from '../ui/UserChallengeDetailCard'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -11,6 +11,7 @@ function UserChallengeDetail() {
     const { userChallengeId } = useParams()
     const [userChallenge, setUserChallenge] = useState({})
     const [message, setMessage] = useState('')
+
     // ref for react confetti effect: https://github.com/alampros/react-confetti
     const [showConfetti, setShowConfetti] = useState(false)
 
@@ -31,12 +32,12 @@ function UserChallengeDetail() {
                 data: { status: newStatus }
             })
             console.log(response.data)
-            setMessage('Status updated successfuly!✅')
 
             await getUserChallenge()
 
             if (newStatus === 'IP') {
-                setMessage('Challenge is now in progress, you got this!💪🏽')
+                setMessage('Challenge is now in progress, you got this buddy💪🏽')
+
             } else if (newStatus === 'C') {
                 setMessage('Congrats! you did it!🥳')
                 setShowConfetti(true)
@@ -58,57 +59,65 @@ function UserChallengeDetail() {
 
     return (
         <>
-            {showConfetti && <ReactConfetti numberOfPieces={400} gravity={0.2} recycle={false} width={window.innerWidth} height={window.innerHeight}/>}
-            <div>
-                <h2>Challenge Details</h2>
-                <p><strong>Challenge:</strong> {userChallenge.challenge_title}</p>
-                <p><strong>Status:</strong> {userChallenge.status_display}</p>
-                <p><strong>Date Added:</strong> {userChallenge.date_added}</p>
-            </div>
+            {showConfetti && <ReactConfetti numberOfPieces={400} gravity={0.2} recycle={false} width={window.innerWidth} height={window.innerHeight} />}
 
+            {/* <h2>Challenge Details</h2> */}
+            <UserChallengeDetailCard
+                date={userChallenge.date_added}
+                title={userChallenge.challenge_title}
+                status={userChallenge.status_display}
 
-            <p>
+            >
 
-                {
-                    userChallenge.status === 'P'
-                        ?
-                        '🤔'
-                        :
-                        userChallenge.status === 'IP'
-                            ?
-                            '⏱️'
-                            :
-                            userChallenge.status === 'C'
+                <div className='flex flex-col items-center justify-center text-center space-y-2 mt-3'>
+                    <p className='text-3xl'>
+
+                        {
+                            userChallenge.status === 'P'
                                 ?
-                                '😎'
+                                '🤔'
                                 :
-                                '❓'
-                }
-            </p>
+                                userChallenge.status === 'IP'
+                                    ?
+                                    '⏱️'
+                                    :
+                                    userChallenge.status === 'C'
+                                        ?
+                                        '😎'
+                                        :
+                                        '❓'
+                        }
+                    </p>
 
-            <div>
-                {
-                    userChallenge.status === 'P'
-                        ?
-                        <button onClick={() => updateStatus('IP')}>start challenge</button>
-                        :
-                        userChallenge.status === 'IP'
+                </div>
+
+                <div>
+                    {
+                        userChallenge.status === 'P'
                             ?
-                            <button onClick={() => updateStatus('C')}>mark as completed</button>
+                            <button onClick={() => updateStatus('IP')} className='challenge-btn'>start challenge</button>
                             :
-                            userChallenge.status === 'C'
+                            userChallenge.status === 'IP'
                                 ?
-                                <button onClick={() => updateStatus('P')}>do it again!</button>
+                                <button onClick={() => updateStatus('C')} className='challenge-btn'>mark as completed</button>
                                 :
-                                null
+                                userChallenge.status === 'C'
+                                    ?
+                                    <button onClick={() => updateStatus('P')} className='challenge-btn'>do it again!</button>
+                                    :
+                                    null
 
-                }
+                    }
 
 
-            </div>
+                </div>
 
-            {message && <p>{message}</p>}
+                {message && <p className='text-gray-700 font-semibold text-sm'>{message}</p>}
+
+            </UserChallengeDetailCard>
+
         </>
+
 
     )
 }

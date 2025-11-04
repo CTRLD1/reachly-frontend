@@ -171,3 +171,7 @@
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in-out forwards;
 }
+
+.challenge-btn {
+  @apply flex items-center gap-2 rounded-lg bg-[#FE5401] px-4 py-2.5 text-xl font-bold text-white hover:bg-[#FF7308] transition transform active:scale-95;
+}
