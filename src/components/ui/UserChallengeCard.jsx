@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-// src: https://tailwindflex.com/@prajwal/feature-card#google_vignette
+// ref: https://tailwindflex.com/@prajwal/feature-card#google_vignette
 
 function UserChallengeCard({ emoji = "🚀", title, id}) {
     return (

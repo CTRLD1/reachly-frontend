@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router';
-// src: https://play.tailwindcss.com/eCfibrSI2X 
+// ref: https://play.tailwindcss.com/eCfibrSI2X 
 function HoverCard({ title, id }) {
     return (
         <div className="group relative cursor-pointer overflow-hidden bg-white px-6 pt-10 pb-8 rounded-xl shadow-md ring-1 ring-gray-200 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">

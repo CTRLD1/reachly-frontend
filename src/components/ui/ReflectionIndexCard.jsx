@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-// src: https://www.uiverse.io/alexruix/cowardly-ape-35
+// ref: https://www.uiverse.io/alexruix/cowardly-ape-35
 
 function ReflectionIndexCard({title, body}) {
     return (

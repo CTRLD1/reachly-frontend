@@ -3,13 +3,14 @@ import { useParams, useNavigate } from 'react-router'
 import axios from 'axios'
 import { Link } from 'react-router'
 import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
+import ReflectionDetailCard from '../ui/ReflectionDetailCard'
 
 
 // ref: cat-collector classwork code
 
 const URL = import.meta.env.VITE_API_URL
 
-function ReflectionDetail({user}) {
+function ReflectionDetail({ user }) {
 
   const { reflectionId } = useParams()
   const [reflection, setReflection] = useState({})
@@ -62,8 +63,10 @@ function ReflectionDetail({user}) {
   }
 
   return (
-    <div>
-      <h2>Reflection Details💭</h2>
+    <div className='flex flex-col items-center justify-center min-h-screen space-y-6'>
+      <div className='flex flex-col items-center'>
+      <h2 className='text-3xl font-extrabold text-white mb-6 flex items-center gap-2' >
+        Reflection Details<span>✏️</span></h2>
       {
         user
           ?
@@ -71,23 +74,30 @@ function ReflectionDetail({user}) {
           :
           null
       }
-      <p><strong>Challenge: </strong>{reflection.user_challenge_title}</p>
-      <p><strong>Mood: </strong>{moodLabels[reflection.mood]}</p>
-      <p><strong>Text: </strong>{reflection.text}</p>
-      <p><strong>Created at: </strong>
-        {new Date(reflection.created_at).toLocaleString()}
-      </p>
-      {
-        Math.abs(new Date(reflection.updated_at)) - new Date(reflection.created_at) > 1000 && (
-          < p >
-            <strong>Last update:</strong> {new Date(reflection.updated_at).toLocaleString()}
-          </p >
-        )
-      }
+      <ReflectionDetailCard>
+        
+        <p><strong>Challenge: </strong>{reflection.user_challenge_title}</p>
+        <p><strong>Mood: </strong>{moodLabels[reflection.mood]}</p>
+        <p><strong>Text: </strong>{reflection.text}</p>
+        <div><strong>Created at: </strong>
+          {new Date(reflection.created_at).toLocaleString()}
+        </div>
+        {
+          Math.abs(new Date(reflection.updated_at)) - new Date(reflection.created_at) > 1000 && (
+            <div>
+              <strong>Last update:</strong>
+              {new Date(reflection.updated_at).toLocaleString()}
+            </div>
+          )
+        }
+      </ReflectionDetailCard>
+      </div>
+      <div className='mt-4 space-x-4'>
+        <Link to={`/reflections/${reflection.id}/edit`}>Edit</Link>
 
-      <Link to={`/reflections/${reflection.id}/edit`}>Edit Reflection</Link>
+        <button onClick={handleDelete} className='text-text hover:text-[#E74C3C] transition-colors duration-200'>Delete</button>
+      </div>
 
-      <button onClick={handleDelete}>Delete Reflection</button>
 
     </div>
   )

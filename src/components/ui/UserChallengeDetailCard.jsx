@@ -1,6 +1,6 @@
 import React from 'react'
 
-// src: https://www.creative-tim.com/twcomponents/component/simple-card-6
+// ref: https://www.creative-tim.com/twcomponents/component/simple-card-6
 
 function UserChallengeDetailCard({ title, status, date, children }) {
   return (
