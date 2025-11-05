@@ -60,17 +60,20 @@ function ReflectionIndex({ user }) {
                                 })}
 
                         </div>
-                        <div className='flex justify-center'>
-                            <Link to='/reflections/new' className='inline-block bg-[#11161C] text-white px-4 py-2 rounded-lg mt-3 hover:bg-[#0D63A5] transition'>
-                                ➕ Add Reflection
-                            </Link>
-                        </div>
+
 
                     </>
                     :
-                    <p>No reflections yet💤</p>
+                    <p className='text-center mt-10 text-gray-300 text-lg'>No reflections yet💤</p>
 
             }
+
+            <div className='flex justify-center'>
+                <Link to='/reflections/new' className='inline-block bg-[#11161C] text-white px-4 py-2 rounded-lg mt-3 hover:bg-[#0D63A5] transition'>
+                    ➕ Add Reflection
+                </Link>
+            </div>
+
             {error && { error }}
         </div >
 

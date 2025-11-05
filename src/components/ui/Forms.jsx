@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Forms({ title, subtitle, children, onSubmit }) {
+function Forms({ title, subtitle, children, onSubmit, header }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0B1015] px-6 sm:px-8">
       <form
@@ -8,6 +8,7 @@ function Forms({ title, subtitle, children, onSubmit }) {
         onSubmit={onSubmit}
         autoComplete="on"
       >
+       {header && <div className='flex justify-center py-10 items-center mb'>{header}</div>} 
         <h1 className="text-white font-bold text-3xl mb-4 text-center">{title}</h1>
         {subtitle && (
           <p className="text-sm text-gray-400 mb-6 text-center">{subtitle}</p>

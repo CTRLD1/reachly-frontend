@@ -4,6 +4,8 @@ import axios from "axios"
 import { saveTokens, getUserFromToken } from "../../lib/auth"
 import { useNavigate } from "react-router"
 import Forms from "../ui/Forms"
+import Lottie from "lottie-react"
+import handwave from '../../assets/handwave.json'
 
 const URL = import.meta.env.VITE_API_URL
 
@@ -25,7 +27,7 @@ export default function Login({ setUser }) {
   }
 
   return (
-    <Forms title='Login' onSubmit={handleSubmit}>
+    <Forms title='Login' onSubmit={handleSubmit} header={<Lottie animationData={handwave} loop className='w-32 h-32 mx-auto' />}>
       <div className="flex flex-col space-y-4 w-full">
         <input
           placeholder="Username"

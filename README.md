@@ -3,10 +3,10 @@
 This repository contains the React frontend of the Reachly web app.
 it connects to the Django REST Framework (DRF) backend through API requests using Axios.
 The app handles:
- • Fetching and displaying data from the backend (challenges, reflections, user profiles)
- • Sending user actions (like creating reflections or updating challenge status)
- • Managing authentication with JWT tokens
- • Providing a clean, responsive UI built with Tailwind CSS
+ - Fetching and displaying data from the backend (challenges, reflections, user profiles)
+ - Sending user actions (like creating reflections or updating challenge status)
+ - Managing authentication with JWT tokens
+ - Providing a clean, responsive UI built with Tailwind CSS
 
 
 ## About Reachly
@@ -16,11 +16,11 @@ Each user can choose a challenges, track their progress, and write reflections a
 ---
 
 ## Tech Stack
- • React (Vite)
- • Axios 
- • React Router 
- • JWT Authentication 
- • Tailwind CSS 
+ - React (Vite)
+ - Axios 
+ - React Router 
+ - JWT Authentication 
+ - Tailwind CSS 
  
 ---
 Reachly backend repository link:
