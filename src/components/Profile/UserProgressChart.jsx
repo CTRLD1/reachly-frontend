@@ -5,6 +5,8 @@ import { TrendingUp } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
 
+// src: shadnc
+
 const URL = import.meta.env.VITE_API_URL
 
 function UserProgressChart({ user }) {
@@ -16,7 +18,7 @@ function UserProgressChart({ user }) {
         completed: 0,
 
     })
-
+    // fetch the user's progress data from the progress view
     async function getUserProgress() {
         try {
             const response = await authRequest({ method: 'get', url: `${URL}/progress/` })

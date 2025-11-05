@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 
 
-function HomePage({ user }) {
+function HomePage() {
     return (
         <div className='flex flex-col justify-center items-center min-h-screen bg-linear-to-b from-[#0B1015] to-[#1A1F25] text-white text-center px-4'>
             <div className='mb-6'>

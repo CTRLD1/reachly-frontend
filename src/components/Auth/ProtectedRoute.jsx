@@ -8,5 +8,3 @@ export default function ProtectedRoute({ children }) {
   if (!user) return <Navigate to="/login" replace />
   return children
 }
-
-// added protected route file to CatDetail

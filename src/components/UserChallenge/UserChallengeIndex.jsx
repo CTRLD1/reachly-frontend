@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router'
-import axios from 'axios'
-import { authRequest, getUserFromToken, clearTokens } from "../../lib/auth"
+import { authRequest } from "../../lib/auth"
 import UserChallengeCard from '../ui/UserChallengeCard'
 
 

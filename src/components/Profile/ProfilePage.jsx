@@ -57,6 +57,7 @@ function ProfilePage() {
                 <p><strong>Email: </strong>{profile.email}</p>
                 <p><strong>Username: </strong>{profile.username}</p>
 
+                {/* to disply the progress chart in src/ui in the user profile */}
                 <UserProgressChart />
             </div>
 
