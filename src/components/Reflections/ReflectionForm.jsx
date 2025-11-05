@@ -72,12 +72,11 @@ function ReflectionForm() {
 
     return (
         <div>
-            <h1>{reflectionId ? `Edit Reflection` : 'Add a New Reflection'} </h1>
-            <Forms onSubmit={handleSubmit}>
+            <Forms onSubmit={handleSubmit} title={reflectionId ? `Edit Reflection` : 'Add a New Reflection'}>
 
                 <div className='flex flex-col space-y-1'>
                     <label htmlFor='user_challenge' className='text-gray-300 text-sm'>Select a Challenge</label>
-                    <select id='user_challenge' name='user_challenge' value={formData.user_challenge} onChange={handleChange} required className='w-full p-3 rounded-xl bg-transparent text-white border-2 border-gray-600 focus:border-blue-500 outline-none'>
+                    <select id='user_challenge' name='user_challenge' value={formData.user_challenge} onChange={handleChange} required className='w-full p-3 rounded-xl bg-[#1a1f25] text-white border-2 border-gray-600 focus:border-blue-500 outline-none'>
                         <option value=''>choose a challenge</option>
                         {userChallenges.map(userchallenge => (
                             <option key={userchallenge.id} value={userchallenge.id}>
@@ -91,7 +90,7 @@ function ReflectionForm() {
 
                 <div className='flex flex-col space-y-1 mt-4'>
                     <label htmlFor='mood' className='text-gray-300 text-sm'>Mood</label>
-                    <select id='mood' name='mood' value={formData.mood} onChange={handleChange} className='w-full p-3 rounded-xl bg-transparent text-white border-2 border-gray-600 focus:border-blue-500 outline-none' >
+                    <select id='mood' name='mood' value={formData.mood} onChange={handleChange} className='w-full p-3 rounded-xl bg-[#1a1f25] text-white border-2 border-gray-600 focus:border-blue-500 outline-none' >
                         <option value='H'>Happy😄</option>
                         <option value='N'>Neutral😐</option>
                         <option value='S'>Sad😔</option>
