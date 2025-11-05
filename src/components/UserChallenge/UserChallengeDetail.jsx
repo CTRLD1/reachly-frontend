@@ -25,6 +25,7 @@ function UserChallengeDetail() {
         }
     }
 
+    // this function updates the challenge status and gives users instant feedback with motivational messages
     async function updateStatus(newStatus) {
         try {
             const response = await authRequest({

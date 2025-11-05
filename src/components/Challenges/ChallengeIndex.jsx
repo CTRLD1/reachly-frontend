@@ -33,13 +33,10 @@ function ChallengeIndex() {
                         ?
                         challenges.map((challenge) => {
                             return (
-                                // <Link to={`/challenges/${challenge.id}`}>
                                     <HoverCard 
                                     title = {challenge.title}
                                     id= {challenge.id}
                                     />
-                                    
-                                // </Link>
                             )
                         })
                         :
