@@ -53,7 +53,7 @@ function ChallengeDetail() {
         </div>
         <h1 className='text-2xl font-bold mb-3 text-gray-800'>{challenge.title}</h1>
         <p className='text-gray-600 mb-6'>{challenge.description}</p>
-        <button onClick={startChallenge} className='bg-sky-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-sky-600 transition-all duration-200'>Start Challenge</button>
+        <button onClick={startChallenge} className='bg-sky-500 text-white font-semibold px-6 py-2 rounded-lg hover:bg-sky-600 transition-all duration-200'>Add Challenge</button>
         {message && <p className='mt-4 text-accent font-bold opacity-0 animate-fadeIn'>{message}</p>}
       </div>
     </div>
