@@ -20,7 +20,8 @@ function HomePage() {
             <Link to='/signup' className='mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300'>
                 Sign up now!
             </Link>
-
+            <p className='text-xs text-gray-300 mt-4 inline-block'>already have an account? <Link to='/login' className='underline'>Login</Link>
+            </p>
         </div>
 
     )
